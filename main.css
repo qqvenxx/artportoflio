@@ -256,3 +256,26 @@ h1, h2, h3, p { margin-top: 0; }
   html { scroll-behavior: auto; }
   *, *::before, *::after { transition-duration: .01ms !important; }
 }
+.portrait-placeholder::before,
+.portrait-placeholder::after,
+.portrait-wrap::before,
+.portrait-wrap::after,
+.portrait-crosshair {
+    display: none !important;
+    content: none !important;
+}
+.portrait-placeholder {
+    border: none !important;
+    outline: none !important;
+    box-shadow: none !important;
+    background: transparent !important;
+}
+.portrait-image {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border: none;
+    outline: none;
+    box-shadow: none;
+}

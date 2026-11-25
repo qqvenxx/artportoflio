@@ -1,0 +1,289 @@
+.drawings-heading {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 28px;
+  padding-top: 82px;
+  padding-bottom: 35px;
+  border-bottom: 1px solid var(--line);
+}
+.drawings-heading .eyebrow {
+  margin-bottom: 18px;
+}
+.drawings-heading h1 {
+  margin: 0;
+  color: var(--text);
+  font: 400 clamp(58px, 8vw, 100px)/.98 var(--serif);
+  letter-spacing: -.065em;
+}
+.drawings-heading h1 span {
+  color: var(--accent);
+  font-style: italic;
+}
+.drawings-intro {
+  margin: 19px 0 0;
+  color: var(--muted);
+  font-size: 12px;
+  letter-spacing: .025em;
+}
+.drawings-count {
+  flex: 0 0 auto;
+  margin: 0 0 7px;
+  color: var(--subtle);
+  font-size: 12px;
+  letter-spacing: .16em;
+}
+.drawings-count span {
+  margin-right: 8px;
+  color: var(--accent);
+}
+.drawings-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    align-items: start;
+    gap: 38px 25px;
+    padding-top: 39px;
+    padding-bottom: 45px;
+}
+.drawing-card {
+  min-width: 0;
+}
+.drawing-frame {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  isolation: isolate;
+  border: 1px solid var(--line);
+  background: var(--surface, #21151b);
+  transition: border-color .3s ease;
+}
+.drawing-card:hover .drawing-frame {
+  border-color: var(--accent);
+}
+.drawing-placeholder {
+  position: relative;
+  display: flex;
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border: 1px solid rgba(241, 233, 226, .17);
+  background:
+    linear-gradient(90deg, transparent 49.8%, rgba(241, 233, 226, .10) 49.9%, rgba(241, 233, 226, .10) 50.1%, transparent 50.2%),
+    linear-gradient(0deg, transparent 49.8%, rgba(241, 233, 226, .10) 49.9%, rgba(241, 233, 226, .10) 50.1%, transparent 50.2%),
+    radial-gradient(ellipse at 50% 43%, rgba(133, 133, 173, .13), transparent 54%),
+    linear-gradient(145deg, #3a202e 0%, #261923 54%, #17131a 100%);
+}
+.drawing-card:nth-child(3n + 2) .drawing-placeholder {
+  background:
+    linear-gradient(135deg, transparent 0 48%, rgba(163, 111, 104, .13) 48.2% 48.8%, transparent 49%),
+    radial-gradient(ellipse at 34% 68%, rgba(163, 111, 104, .19), transparent 48%),
+    linear-gradient(145deg, #30202b 0%, #211720 58%, #151218 100%);
+}
+.drawing-card:nth-child(3n) .drawing-placeholder {
+  background:
+    linear-gradient(115deg, transparent 0 44%, rgba(241, 233, 226, .08) 44.2% 44.7%, transparent 44.9%),
+    radial-gradient(ellipse at 68% 36%, rgba(133, 133, 173, .16), transparent 48%),
+    linear-gradient(145deg, #261a28 0%, #311c26 52%, #171219 100%);
+}
+.drawing-placeholder::before,
+.drawing-placeholder::after {
+  position: absolute;
+  content: "";
+  aspect-ratio: 1;
+  border: 1px solid rgba(163, 111, 104, .52);
+  transform: rotate(45deg);
+  pointer-events: none;
+}
+.drawing-placeholder::before {
+  width: 48%;
+}
+.drawing-placeholder::after {
+  width: 29%;
+  border-color: rgba(241, 233, 226, .2);
+}
+.drawing-index,
+.drawing-placeholder-title,
+.drawing-frame-note {
+  position: relative;
+  z-index: 1;
+}
+.drawing-index {
+  margin-bottom: 13px;
+  color: rgba(241, 233, 226, .85);
+  font: italic 42px/1 var(--serif);
+}
+.drawing-placeholder-title {
+  color: var(--accent);
+  font-size: 8px;
+  letter-spacing: .2em;
+}
+.drawing-frame-note {
+  position: absolute;
+  right: 13px;
+  bottom: 12px;
+  color: rgba(241, 233, 226, .48);
+  font-size: 7px;
+  letter-spacing: .14em;
+}
+.drawing-image {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  object-fit: contain;
+  background: var(--surface, #21151b);
+  cursor: zoom-in;
+}
+.drawing-caption {
+  padding-top: 14px;
+}
+.drawing-caption-topline {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--line);
+  color: var(--subtle);
+  font-size: 8px;
+  letter-spacing: .13em;
+}
+.drawing-caption-number {
+  color: var(--accent);
+}
+.drawing-caption h2 {
+  margin: 12px 0 0;
+  color: var(--text);
+  font: 400 clamp(20px, 2.4vw, 27px)/1.15 var(--serif);
+  letter-spacing: -.025em;
+}
+.drawing-lightbox[hidden] {
+  display: none;
+}
+.drawing-lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 35px 65px;
+  background: rgba(19, 13, 20, .97);
+  backdrop-filter: blur(12px);
+}
+.drawing-lightbox-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  min-width: 0;
+  min-height: 0;
+  gap: 16px;
+}
+.drawing-lightbox-image {
+  display: block;
+  width: auto;
+  height: auto;
+  max-width: min(78vw, 1050px);
+  max-height: 76vh;
+  object-fit: contain;
+  box-shadow: 0 15px 60px rgba(0, 0, 0, .35);
+}
+.drawing-lightbox-caption {
+  display: flex;
+  width: 100%;
+  max-width: 850px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding-top: 0;
+}
+.drawing-lightbox-caption h2:empty {
+  display: none;
+}
+.drawing-lightbox-caption span {
+  color: var(--accent);
+  font-size: 12px;
+  letter-spacing: .16em;
+}
+.drawing-lightbox-caption h2 {
+  margin: 0;
+  color: var(--text);
+  font: 400 22px/1.2 var(--serif);
+}
+.drawing-lightbox button {
+  color: var(--text);
+  cursor: pointer;
+}
+.drawing-lightbox-close {
+  position: absolute;
+  top: 25px;
+  right: 32px;
+  border: 0;
+  background: none;
+  font-size: 38px;
+  font-weight: 200;
+  transition: color .25s ease;
+}
+.drawing-lightbox-close:hover {
+  color: var(--accent);
+}
+.drawing-lightbox-arrow {
+  position: absolute;
+  top: 50%;
+  display: flex;
+  width: 45px;
+  height: 45px;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  background: transparent;
+  font-size: 19px;
+  transform: translateY(-50%);
+  transition: background .25s ease, border-color .25s ease;
+}
+.drawing-lightbox-arrow:hover {
+  border-color: var(--accent);
+  background: var(--accent);
+}
+.drawing-lightbox-prev {
+  left: 25px;
+}
+.drawing-lightbox-next {
+  right: 25px;
+}
+.drawing-lightbox button:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 4px;
+}
+@media (max-width: 900px) {
+  .drawings-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 32px 21px;
+  }
+}
+@media (max-width: 560px) {
+  .drawings-grid {
+    grid-template-columns: 1fr;
+    gap: 30px;
+    padding-top: 26px;
+    padding-bottom: 35px;
+  }
+}
+@media (max-width: 650px) {
+  .drawing-lightbox {
+    padding: 65px 12px 75px;
+  }
+  .drawing-lightbox-prev {
+    left: 12px;
+  }
+  .drawing-lightbox-next {
+    right: 12px;
+  }
+}

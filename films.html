@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#350908">
+  <meta name="description" content="Short films by Kateryna Antoniuk.">
+  <title>Films — Kateryna Antoniuk</title>
+  <link rel="icon" type="image/png" href="logo.png">
+  <link rel="stylesheet" href="main.css">
+  <link rel="stylesheet" href="films.css">
+</head>
+<body>
+  <header class="site-header" id="top">
+    <a class="brand" href="main.html" aria-label="Kateryna Antoniuk — Home">
+      <span class="brand-name">KATERYNA ANTONIUK</span>
+    </a>
+
+    <nav class="site-nav" aria-label="Main navigation">
+      <a href="main.html">Home</a>
+      <a href="films.html" aria-current="page">Films</a>
+      <a href="photography.html">Photography</a>
+      <a href="writing.html">Writing</a>
+    </nav>
+
+    <span class="header-index">PORTFOLIO 2026—27</span>
+  </header>
+
+  <main>
+    <section class="films-heading page-shell" aria-labelledby="films-title">
+      <div>
+        <p class="eyebrow">PORTFOLIO&nbsp; / &nbsp;01</p>
+        <h1 id="films-title">Short Films</h1>
+      </div>
+      <p class="films-count"><span>2 FILMS</span></p>
+    </section>
+
+    <section class="films-grid page-shell" aria-label="Selected short films">
+
+      <article class="film-card">
+       <div class="film-preview" data-drive-src="https://drive.google.com/file/d/1SJe8ZPoMSK0VASS79VfS_fD1cgfn2Thl/preview">
+    <button class="film-poster-button"
+            type="button"
+            aria-label="Load MEMORY film">
+        <img src="film1.png"
+             alt="MEMORY — film poster">
+        <span class="film-poster-play" aria-hidden="true">▶</span>
+    </button>
+</div>
+
+        <div class="film-caption">
+          <div class="film-caption-topline">
+            <span class="film-caption-number">01 / 02</span>
+            <span class="film-caption-meta">2025 &nbsp;·&nbsp; 03:34</span>
+          </div>
+          <h2>MEMORY</h2>
+          <p class="film-description">Created for my Intermediate Media Arts class, this short film follows a lyrical character who responds to displacement and loss by imposing strict order on her daily life, turning routine into a form of control. The piece explores how perfectionism can become both a source of stability and a way of managing unresolved trauma. Rather than treating memory as something that keeps her trapped in the past, the film presents it as part of what allows her to move forward. Her perfectionism is not simply a flaw to overcome; instead, it is embraced as a permanent, protective part of who she has become.</p>
+        </div>
+      </article>
+
+      <article class="film-card">
+        <div class="film-preview" data-drive-src="https://drive.google.com/file/d/107q5NhJ5S_qgl8604_QzgUsoo65UnmsN/preview">
+    <button class="film-poster-button"
+            type="button"
+            aria-label="Load MEMORY film">
+        <img src="film2.png"
+             alt="Nothing. Interpreted. — film poster">
+        <span class="film-poster-play" aria-hidden="true">▶</span>
+    </button>
+</div>
+
+        <div class="film-caption">
+          <div class="film-caption-topline">
+            <span class="film-caption-number">02 / 02</span>
+            <span class="film-caption-meta">2026 &nbsp;·&nbsp; 01:51</span>
+          </div>
+          <h2>Nothing. Interpreted.</h2>
+          <p class="film-description">Inspired by Kazimir Malevich's The Black Square, this philosophical short film explores the subjectivity of meaning and value. Built around an original poetic voiceover, it relies on isolated objects, carefully composed frames, and atmospheric scenery to construct its visual language. The short film considers how objects and experiences acquire significance through the meanings we assign to them. By examining the relationship between perception and interpretation, it explores whether anything can possess meaning independently of the observer.</p>
+        </div>
+      </article>
+    </section>
+  </main>
+
+  <footer class="site-footer page-shell">
+    <a class="footer-mark" href="main.html" aria-label="Back to home">Home</a>
+    <span>© 2026 KATERYNA ANTONIUK</span>
+    <a class="back-to-top" href="#top">BACK TO TOP ↑</a>
+  </footer>
+  <script>
+document.querySelectorAll(".film-preview[data-drive-src]").forEach(container => {
+
+    const button = container.querySelector(".film-poster-button");
+
+    button.addEventListener("click", () => {
+
+        const iframe = document.createElement("iframe");
+
+        iframe.className = "film-embed";
+        iframe.src = container.dataset.driveSrc;
+        iframe.title = button.getAttribute("aria-label");
+        iframe.allow = "autoplay";
+        iframe.allowFullscreen = true;
+
+        container.replaceChildren(iframe);
+
+    });
+
+});
+</script>
+</body>
+</html>

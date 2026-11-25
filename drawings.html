@@ -1,0 +1,228 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#301e2d">
+  <meta name="description" content="Selected drawings by Kateryna Antoniuk.">
+  <title>Drawings — Kateryna Antoniuk</title>
+  <link rel="icon" type="image/png" href="logo.png">
+  <link rel="stylesheet" href="main.css">
+  <link rel="stylesheet" href="drawings.css">
+</head>
+<body>
+  <header class="site-header" id="top">
+    <a class="brand" href="index.html" aria-label="Kateryna Antoniuk — Home">
+      <span class="brand-name">KATERYNA ANTONIUK</span>
+    </a>
+    <nav class="site-nav" aria-label="Main navigation">
+      <a href="index.html">Home</a>
+      <a href="films.html">Films</a>
+      <a href="photography.html">Photography</a>
+      <a href="drawings.html" aria-current="page">Drawings</a>
+      <a href="writing.html">Writing</a>
+    </nav>
+    <span class="header-index">PORTFOLIO 2026—27</span>
+  </header>
+  <main>
+    <section class="drawings-heading page-shell" aria-labelledby="drawings-title">
+      <div>
+        <p class="eyebrow">PORTFOLIO&nbsp; / &nbsp;03</p>
+        <h1 id="drawings-title">Drawing</h1>
+      </div>
+      <p class="drawings-count"><span>12 DRAWINGS</span></p>
+    </section>
+    <section class="drawings-grid page-shell" aria-label="Selected drawings">
+        <article class="drawing-card">
+    <div class="drawing-frame">
+        <img
+            class="drawing-image"
+            src="drawing/d1.jpg"
+            alt="Drawing 01"
+            loading="lazy">
+    </div>
+      </article>
+      <article class="drawing-card">
+       <div class="drawing-frame">
+        <img
+            class="drawing-image"
+            src="drawing/d2.jpg"
+            alt="Drawing 2"
+            loading="lazy">
+    </div>
+      </article>
+      <article class="drawing-card">
+        <div class="drawing-frame">
+        <img
+            class="drawing-image"
+            src="drawing/d3.jpg"
+            alt="Drawing 3"
+            loading="lazy">
+    </div>
+      </article>
+      <article class="drawing-card">
+        <div class="drawing-frame">
+        <img
+            class="drawing-image"
+            src="drawing/d4.jpg"
+            alt="Drawing 4"
+            loading="lazy">
+    </div>
+      </article>
+      <article class="drawing-card">
+        <div class="drawing-frame">
+        <img
+            class="drawing-image"
+            src="drawing/d5.jpg"
+            alt="Drawing 5"
+            loading="lazy">
+    </div>
+      </article>
+      <article class="drawing-card">
+        <div class="drawing-frame">
+        <img
+            class="drawing-image"
+            src="drawing/d6.jpg"
+            alt="Drawing 6"
+            loading="lazy">
+    </div>
+      </article>
+      <article class="drawing-card">
+        <div class="drawing-frame">
+        <img
+            class="drawing-image"
+            src="drawing/d7.jpg"
+            alt="Drawing 7"
+            loading="lazy">
+    </div>
+      </article>
+      <article class="drawing-card">
+        <div class="drawing-frame">
+        <img
+            class="drawing-image"
+            src="drawing/d8.jpg"
+            alt="Drawing 8"
+            loading="lazy">
+    </div>
+      </article>
+      <article class="drawing-card">
+        <div class="drawing-frame">
+        <img
+            class="drawing-image"
+            src="drawing/d9.jpg"
+            alt="Drawing 9"
+            loading="lazy">
+    </div>
+      </article>
+      <article class="drawing-card">
+        <div class="drawing-frame">
+        <img
+            class="drawing-image"
+            src="drawing/d10.jpg"
+            alt="Drawing 10"
+            loading="lazy">
+    </div>
+      </article>
+      <article class="drawing-card">
+        <div class="drawing-frame">
+        <img
+            class="drawing-image"
+            src="drawing/d11.jpg"
+            alt="Drawing 11"
+            loading="lazy">
+    </div>
+      </article>
+      <article class="drawing-card">
+        <div class="drawing-frame">
+        <img
+            class="drawing-image"
+            src="drawing/d12.jpg"
+            alt="Drawing 12"
+            loading="lazy">
+    </div>
+      </article>
+    </section>
+  </main>
+  <footer class="site-footer page-shell">
+    <a class="footer-mark" href="index.html" aria-label="Back to home">Home</a>
+    <span>© 2026 KATERYNA ANTONIUK</span>
+    <a class="back-to-top" href="#top">BACK TO TOP ↑</a>
+  </footer>
+  <div class="drawing-lightbox" id="drawing-lightbox" hidden>
+    <button class="drawing-lightbox-close" id="drawing-lightbox-close" type="button" aria-label="Close viewer">&times;</button>
+    <button class="drawing-lightbox-arrow drawing-lightbox-prev" id="drawing-lightbox-prev" type="button" aria-label="Previous drawing">&#8592;</button>
+    <div class="drawing-lightbox-content">
+      <img class="drawing-lightbox-image" id="drawing-lightbox-image" src="" alt="">
+      <div class="drawing-lightbox-caption">
+        <span id="drawing-lightbox-counter">01 / 12</span>
+        <h2 id="drawing-lightbox-title"></h2>
+      </div>
+    </div>
+    <button class="drawing-lightbox-arrow drawing-lightbox-next" id="drawing-lightbox-next" type="button" aria-label="Next drawing">&#8594;</button>
+  </div>
+  <script>
+    (() => {
+      const gallery = document.querySelector('.drawings-grid');
+      const lightbox = document.getElementById('drawing-lightbox');
+      const lightboxImage = document.getElementById('drawing-lightbox-image');
+      const lightboxTitle = document.getElementById('drawing-lightbox-title');
+      const lightboxCounter = document.getElementById('drawing-lightbox-counter');
+      const closeButton = document.getElementById('drawing-lightbox-close');
+      const previousButton = document.getElementById('drawing-lightbox-prev');
+      const nextButton = document.getElementById('drawing-lightbox-next');
+      let drawings = [];
+      let currentIndex = 0;
+      let previouslyFocused = null;
+      function refreshDrawings() {
+        drawings = Array.from(gallery.querySelectorAll('img.drawing-image'));
+      }
+      function displayDrawing(index) {
+        if (!drawings.length) return;
+        currentIndex = (index + drawings.length) % drawings.length;
+        const image = drawings[currentIndex];
+        const card = image.closest('.drawing-card');
+        const title = card?.querySelector('.drawing-caption h2')?.textContent.trim();
+        lightboxImage.src = image.currentSrc || image.src;
+        lightboxImage.alt = image.alt || 'Portfolio drawing';
+        lightboxTitle.textContent = '';
+        lightboxCounter.textContent = `${String(currentIndex + 1).padStart(2, '0')} / ${String(drawings.length).padStart(2, '0')}`;
+      }
+      function openViewer(index) {
+        refreshDrawings();
+        if (!drawings.length) return;
+        previouslyFocused = document.activeElement;
+        displayDrawing(index);
+        lightbox.hidden = false;
+        document.body.style.overflow = 'hidden';
+        closeButton.focus();
+      }
+      function closeViewer() {
+        lightbox.hidden = true;
+        lightboxImage.removeAttribute('src');
+        document.body.style.overflow = '';
+        if (previouslyFocused && typeof previouslyFocused.focus === 'function') {
+          previouslyFocused.focus();
+        }
+      }
+      gallery.addEventListener('click', (event) => {
+        const image = event.target.closest('img.drawing-image');
+        if (!image) return;
+        refreshDrawings();
+        openViewer(drawings.indexOf(image));
+      });
+      closeButton.addEventListener('click', closeViewer);
+      previousButton.addEventListener('click', () => displayDrawing(currentIndex - 1));
+      nextButton.addEventListener('click', () => displayDrawing(currentIndex + 1));
+      lightbox.addEventListener('click', (event) => {
+        if (event.target === lightbox) closeViewer();
+      });
+      document.addEventListener('keydown', (event) => {
+        if (lightbox.hidden) return;
+        if (event.key === 'Escape') closeViewer();
+        if (event.key === 'ArrowLeft') displayDrawing(currentIndex - 1);
+        if (event.key === 'ArrowRight') displayDrawing(currentIndex + 1);
+      });
+    })();
+  </script>
+</body>
+</html>
